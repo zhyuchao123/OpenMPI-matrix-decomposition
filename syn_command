@@ -1,0 +1,24 @@
+ rsync -a /home/zyc/C_Projects/ps20-ass1 yz7050@gadi.nci.org.au:/home/659/yz7050
+
+mpicc  -c mpiexample3.c    
+mpicc -o mpiexample3 mpiexample3.o 
+
+
+ rsync /home/zyc/C_Projects/gandi/mpi_comm1.c yz7050@gadi.nci.org.au:/home/659/yz7050/mpi_prac/
+
+ rsync yz7050@gadi.nci.org.au:/home/659/yz7050/prac1/ /home/zyc/C_Projects/
+
+
+
+  int total = nT*nT;
+  for(int i=0; i< total;i++){
+      int row = i/nT;
+      int col = i % nT;
+      if(col>row){
+        owner[row][col]=-1;
+      }
+  }
+
+
+
+mpirun -np 6 ./testCholesky -v 1 -p 2 2000 144

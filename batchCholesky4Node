@@ -1,0 +1,36 @@
+#!/bin/bash
+#PBS -q normal
+#PBS -j oe
+#PBS -l walltime=00:00:30,mem=32GB
+#PBS -l wd
+#PBS -l ncpus=192
+
+module load openmpi intel-compiler intel-mkl
+
+#example small values
+N=2000
+wT=32
+
+
+opts="-r -b"
+opts='"" -e -x'
+opts='""'
+ps='96 192'
+
+for opt in $opts ; do
+    if [ "$opt" = '""' ] ; then 
+	opt=
+    fi	
+    for p in $ps ; do
+	echo ""
+	echo mpirun -np $p ./testCholesky $opt $N $wT
+	time mpirun -np $p ./testCholesky $opt $N $wT
+    done
+done
+
+if [ ! -z "$PBS_NODEFILE" ] ; then
+   cat $PBS_NODEFILE
+fi
+
+exit
+
