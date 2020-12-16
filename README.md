@@ -1,1 +1,1 @@
-Inintal source files for COMP4300/8300 Assignment 1, 2020
+使用openmpi 来探究矩阵分解
